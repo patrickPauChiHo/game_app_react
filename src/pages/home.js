@@ -7,6 +7,7 @@ import Game from '../components/Game';
 import GameDetail from '../components/GameDetail';
 //Styled and animation
 import styled from "styled-components";
+import { fadeIn} from "../animation";
 import {motion, AnimatePresence, LayoutGroup} from "framer-motion";
 //router
 import {useLocation} from 'react-router-dom';
@@ -22,14 +23,32 @@ const Home = () => {
       dispatch(loadGames());
     }, [dispatch]);
     // Get the data 
-    const {popular, newGames, upcoming } = useSelector((state) => state.games);
+    const {popular, newGames, upcoming, searched } = useSelector((state) => state.games);
     
     return(
-        <GameList>
+        <GameList variants={fadeIn}
+        initial="hidden"
+        animate="show">
             <LayoutGroup type="crossfade">
             <AnimatePresence>
             {pathId && <GameDetail pathId={pathId}/>}
             </AnimatePresence>
+            {searched.length ? (
+            <div className='searched'>
+            <h2>Searched Games</h2>
+            <Games>
+                {searched.map(game =>(
+                    <Game 
+                        name={game.name} 
+                        released={game.released} 
+                        id={game.id}
+                        key={game.id}  
+                        image={game.background_image}
+                    />
+                ))}
+            </Games>
+            </div>
+            ) : ''}
             <h2>Upcoming Games</h2>
             <Games>
                 {upcoming.map(game =>(

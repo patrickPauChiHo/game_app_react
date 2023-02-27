@@ -2,6 +2,7 @@ import React from "react";
 //Styled and animation
 import styled from "styled-components";
 import {motion} from "framer-motion";
+import {popup} from "../animation";
 //Redux
 import {useDispatch} from "react-redux";
 import {loadDetail} from "../action/detailAction";
@@ -19,11 +20,16 @@ const Game = ({name, released, image, id}) => {
         dispatch(loadDetail(id));
     }
     return (
-        <StyledGame LayoutId={stringPathId} onClick={loadDetailHandler}>
+        <StyledGame 
+        layoutId={stringPathId} 
+        onClick={loadDetailHandler}
+        variants={popup}
+        initial='hidden'
+        animate='show'>
             <Link to={`/game/${id}?key=${process.env.REACT_APP_GAME_API}`}>
-            <motion.h3 LayoutId={`title ${stringPathId}`}>{name}</motion.h3>
+            <motion.h3 layoutId={`title ${stringPathId}`}>{name}</motion.h3>
             <p>{released}</p>
-            <motion.img LayoutId={`image ${stringPathId}`} src={smallImage(image, 640)} alt={name}/>
+            <motion.img layoutId={`image ${stringPathId}`} src={smallImage(image, 640)} alt={name}/>
             </Link>
         </StyledGame>
     )
@@ -32,9 +38,10 @@ const Game = ({name, released, image, id}) => {
 
 const StyledGame = styled(motion.div)`
     min-height: 30vh;
-    box-shadow: 0px 5px 20px rgba(0,0,0,0.2);
+    box-shadow: 0px 5px 20px rgba(0, 255, 255,0.2);
     text-align: center;
     border-radius: 1rem;
+    border-color: #00fff6;
     cursor: pointer;
     overflow: hidden;
     img{

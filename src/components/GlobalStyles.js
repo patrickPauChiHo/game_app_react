@@ -17,6 +17,7 @@ const GlobalStyles = createGlobalStyle`
     body{
         font-family: 'Montserrat', sans-serif;
         width: 100%;
+        background: #1b1b1b;
     }
     h2{
         font-size: 3rem;
@@ -26,13 +27,13 @@ const GlobalStyles = createGlobalStyle`
     }
     h3{
         font-size: 1.3rem;
-        color: #333;
+        color: #00fff6;
         padding: 1.5rem 0rem;
     }
     p{
         font-size: 1.2rem;
         line-height: 200%;
-        color: #696969;
+        color: white;
     }
     a{
         text-decoration: none;
@@ -40,6 +41,10 @@ const GlobalStyles = createGlobalStyle`
     }
     img{
         display: block;
+    }
+    input{
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
     }
 `
 
